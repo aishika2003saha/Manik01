@@ -1,32 +1,80 @@
 "use client"
 
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 export default function Navbar() {
+  const [menuOpen, setMenuOpen] = useState(false)
+
+  const handleMenuClose = () => {
+    setMenuOpen(false)
+  }
+
   return (
-    <header className="sticky top-0 z-40 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container mx-auto px-4 h-14 flex items-center justify-between">
-        <a href="#" className="font-semibold tracking-tight" aria-label="Home">
-          CREATIVE.INFLUENCER
-        </a>
-        <nav className="hidden md:flex items-center gap-6 text-sm">
-          <a href="#cars" className="text-muted-foreground hover:text-foreground transition-colors">
-            Cars
+    <>
+      {/* Navbar */}
+      <header className="sticky top-0 z-[10001] border-b border-transparent bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <div className="container mx-auto px-4 h-14 flex items-center justify-between">
+          <a href="#" className="font-semibold tracking-tight" aria-label="Home">
+            MANIK AGARWAL
           </a>
-          <a href="#travel" className="text-muted-foreground hover:text-foreground transition-colors">
-            Travel
-          </a>
-          <a href="#brands" className="text-muted-foreground hover:text-foreground transition-colors">
-            Brands
-          </a>
-        </nav>
-        <div className="flex items-center gap-2">
-          <Button asChild variant="default" className={cn("bg-primary text-primary-foreground")}>
-            <a href="#contact">Contact</a>
-          </Button>
+
+          {/* Hamburger Button */}
+          <button
+            className="flex flex-col justify-center items-center w-6 h-6 relative z-50 focus:outline-none"
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
+            {/* Top Line */}
+            <span
+              className={cn(
+                "block w-6 h-0.5 bg-black mb-1.5 transition-transform duration-300 ease-in-out",
+                menuOpen && "rotate-45 translate-y-2"
+              )}
+            />
+            {/* Middle Line */}
+            <span
+              className={cn(
+                "block w-6 h-0.5 bg-black mb-1.5 transition-opacity duration-300 ease-in-out",
+                menuOpen && "opacity-0"
+              )}
+            />
+            {/* Bottom Line */}
+            <span
+              className={cn(
+                "block w-6 h-0.5 bg-black transition-transform duration-300 ease-in-out",
+                menuOpen && "-rotate-45 -translate-y-2"
+              )}
+            />
+          </button>
         </div>
+      </header>
+
+      {/* Overlay */}
+      <div
+        className={cn(
+          "fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm transition-opacity duration-300 z-[9999]",
+          menuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        )}
+        onClick={handleMenuClose}
+      ></div>
+
+      {/* Slide-in Menu */}
+      <div
+        className={cn(
+          "fixed top-0 right-0 h-full bg-white shadow-xl transform transition-transform duration-300 z-[10000]",
+          menuOpen ? "translate-x-0" : "translate-x-full",
+          "w-4/5 max-w-5xl p-16 flex flex-col justify-start"
+        )}
+      >
+        <h2 className="text-5xl font-bold mb-12">Menu</h2>
+        <nav className="flex flex-col gap-8 text-3xl">
+          <a href="#cars" className="hover:text-blue-500 transition-colors">Cars</a>
+          <a href="#travel" className="hover:text-blue-500 transition-colors">Travel</a>
+          <a href="#brands" className="hover:text-blue-500 transition-colors">Brands</a>
+        </nav>
+
       </div>
-    </header>
+    </>
   )
 }
