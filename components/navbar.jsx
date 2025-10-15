@@ -14,7 +14,7 @@ export default function Navbar() {
   return (
     <>
       {/* Navbar */}
-      <header className="sticky top-0 z-[10001] border-b border-transparent bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <header className="sticky top-0 z-[10001] border-b border-transparent bg-background/80 supports-[backdrop-filter]:bg-background/60">
         <div className="container mx-auto px-4 h-14 flex items-center justify-between">
           <a href="#" className="font-semibold tracking-tight" aria-label="Home">
             MANIK AGARWAL
@@ -69,9 +69,9 @@ export default function Navbar() {
       >
         <h2 className="text-5xl font-bold mb-12">Menu</h2>
         <nav className="flex flex-col gap-8 text-3xl">
-          <a href="#cars" className="hover:text-blue-500 transition-colors">Cars</a>
-          <a href="#travel" className="hover:text-blue-500 transition-colors">Travel</a>
-          <a href="#brands" className="hover:text-blue-500 transition-colors">Brands</a>
+          <a href="#cars" className={cn("hover:text-blue-500 transition-colors")} onClick={handleMenuClose}>Cars</a>
+          <a href="#travel" className={cn("hover:text-blue-500 transition-colors")} onClick={handleMenuClose}>Travel</a>
+          <a href="#brands" className={cn("hover:text-blue-500 transition-colors")} onClick={handleMenuClose}>Brands</a>
         </nav>
 
       </div>
