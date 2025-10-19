@@ -1,3 +1,6 @@
+"use client"
+
+import { useState, useEffect } from "react"
 import Navbar from "@/components/navbar"
 import Hero from "@/components/hero"
 import CarGallery from "@/components/car-gallery"
@@ -6,10 +9,21 @@ import BrandsMarquee from "@/components/brands-marquee"
 import Footer from "@/components/footer"
 
 export default function Page() {
+  const [isLoaded, setIsLoaded] = useState(false)
+
+  useEffect(() => {
+    // Trigger animations after component mounts
+    const timer = setTimeout(() => {
+      setIsLoaded(true)
+    }, 100)
+    
+    return () => clearTimeout(timer)
+  }, [])
+
   return (
     <main>
-      <Navbar />
-      <Hero />
+      <Navbar isLoaded={isLoaded} />
+      <Hero isLoaded={isLoaded} />
       <section id="cars" className="container mx-auto px-4 py-16 md:py-24">
         <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-pretty mb-6">The Garage</h2>
         <p className="text-muted-foreground mb-8">A peek at the collection — performance, style, and a little flex.</p>
