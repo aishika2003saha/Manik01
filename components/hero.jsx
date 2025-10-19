@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
 
-export default function Hero() {
+export default function Hero({ isLoaded }) {
   return (
     <>
       {/* Main Hero Section */}
@@ -26,7 +26,9 @@ export default function Hero() {
         {/* Large MANIK Text - Full Width Background */}
         <div className="absolute inset-0 flex items-start justify-center pt-16 md:pt-20 pointer-events-auto z-10">
           <div 
-            className="text-[28vw] md:text-[24vw] lg:text-[18vw] font-bold text-muted-foreground/15 select-none transition-all duration-700 hover:text-muted-foreground/8 hover:scale-105 cursor-default group"
+            className={`text-[28vw] md:text-[24vw] lg:text-[18vw] font-bold text-muted-foreground/15 select-none transition-all duration-1200 hover:text-muted-foreground/8 hover:scale-105 cursor-default group ${
+              isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-150'
+            }`}
             style={{ 
               fontFamily: "'Orbitron', monospace",
               fontWeight: '800',
@@ -38,7 +40,8 @@ export default function Hero() {
               backgroundClip: 'text',
               width: '100vw',
               textAlign: 'center',
-              transition: 'all 0.7s cubic-bezier(0.4, 0, 0.2, 1)'
+              transitionDelay: '0.2s',
+              transitionTimingFunction: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
             }}
           >
             MANIK
@@ -52,7 +55,9 @@ export default function Hero() {
           <div className="relative min-h-[85vh] flex items-center justify-center pt-8 md:pt-12">
             
             {/* Central Image - Hero Focus */}
-            <div className="relative transition-all duration-1000">
+            <div className={`relative transition-all duration-1000 delay-500 ${
+              isLoaded ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-50 translate-y-20'
+            }`}>
               <div className="relative group">
                 {/* Enhanced Glow Effects */}
                 <div className="absolute -inset-12 bg-gradient-to-r from-primary/20 via-accent/15 to-primary/20 rounded-full blur-3xl opacity-60 group-hover:opacity-80 transition-opacity duration-700" />
@@ -84,7 +89,9 @@ export default function Hero() {
         {/* Content Areas - Positioned Around the Image */}
         
         {/* Left Side - Subtitle (Vertically Centered with Image) */}
-        <div className="absolute top-1/2 left-8 md:left-16 transform -translate-y-1/2 z-30 transition-all duration-1000">
+        <div className={`absolute top-1/2 left-8 md:left-16 transform -translate-y-1/2 z-30 transition-all duration-1000 delay-700 ${
+          isLoaded ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-full'
+        }`}>
           <div className="space-y-2">
             <div className="flex items-center gap-3">
               <div className="w-8 h-px bg-gradient-to-r from-primary to-accent" />
@@ -96,7 +103,9 @@ export default function Hero() {
         </div>
 
         {/* Right Side - Visual Storyteller Tag (Vertically Centered with Image) */}
-        <div className="absolute top-1/2 right-8 md:right-16 transform -translate-y-1/2 z-30 transition-all duration-1000">
+        <div className={`absolute top-1/2 right-8 md:right-16 transform -translate-y-1/2 z-30 transition-all duration-1000 delay-900 ${
+          isLoaded ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-full'
+        }`}>
           <div className="text-right">
             <p className="text-lg md:text-xl font-light text-muted-foreground/70 tracking-wider">
               Visual Storyteller
@@ -107,7 +116,9 @@ export default function Hero() {
         
 
         {/* Bottom Right - CTA Buttons */}
-        <div className="absolute bottom-16 right-8 md:bottom-20 md:right-16 z-30 transition-all duration-1000">
+        <div className={`absolute bottom-16 right-8 md:bottom-20 md:right-16 z-30 transition-all duration-1000 delay-1100 ${
+          isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}>
           <div className="flex flex-col gap-4">
             <Button 
               size="lg" 
@@ -128,7 +139,9 @@ export default function Hero() {
         </div>
 
         {/* Center Bottom - Stats */}
-        <div className="absolute bottom-20 md:bottom-24 left-1/2 transform -translate-x-1/2 z-30 transition-all duration-1000">
+        <div className={`absolute bottom-20 md:bottom-24 left-1/2 transform -translate-x-1/2 z-30 transition-all duration-1000 delay-1300 ${
+          isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}>
           <div className="flex items-center gap-6 md:gap-8 bg-background/80 backdrop-blur-sm px-6 md:px-8 py-3 md:py-4 rounded-full border border-border/50">
             <div className="text-center">
               <div className="text-lg md:text-xl font-bold text-primary">50+</div>

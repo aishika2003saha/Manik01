@@ -4,7 +4,7 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
-export default function Navbar() {
+export default function Navbar({ isLoaded }) {
   const [menuOpen, setMenuOpen] = useState(false)
 
   const handleMenuClose = () => {
@@ -14,7 +14,9 @@ export default function Navbar() {
   return (
     <>
       {/* Navbar */}
-      <header className="sticky top-0 z-[10001] border-b border-transparent bg-background/80 supports-[backdrop-filter]:bg-background/60">
+      <header className={`sticky top-0 z-[10001] border-b border-transparent bg-background/80 supports-[backdrop-filter]:bg-background/60 transition-all duration-1000 ${
+        isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full'
+      }`}>
         <div className="container mx-auto px-4 h-14 flex items-center justify-between">
           <a href="#" className="font-semibold tracking-tight" aria-label="Home">
             MANIK AGARWAL
@@ -68,7 +70,7 @@ export default function Navbar() {
         )}
       >
         <h2 className="text-5xl font-bold mb-12">Menu</h2>
-        <nav className="flex flex-col gap-8 text-3xl">
+        <nav className="flex flex-col gap-8 text-3xl ml-10">
           <a href="#cars" className={cn("hover:text-blue-500 transition-colors")} onClick={handleMenuClose}>Cars</a>
           <a href="#travel" className={cn("hover:text-blue-500 transition-colors")} onClick={handleMenuClose}>Travel</a>
           <a href="#brands" className={cn("hover:text-blue-500 transition-colors")} onClick={handleMenuClose}>Brands</a>
